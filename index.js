@@ -13,7 +13,7 @@ const bot = new TeleBot({
     }
   });
 
-  console.log(UNMOTIVATOR_TOKEN);
+  console.log(bot);
   const app = express();
   app.use(cors());
   app.use(bodyParser.json());
