@@ -33,8 +33,8 @@ const bot = new TeleBot({
   const library = {
     node: ['нода', 'node', 'node js', 'ноду', 'ноде'],
   }
-  const checker = (case, msg) => {
-      for(const comp in library[case]) {
+  const checker = (topic, msg) => {
+      for(const comp in library[topic]) {
         msg.includes(comp) return true;
       }
       return false;
