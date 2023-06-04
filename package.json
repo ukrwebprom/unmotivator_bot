@@ -4,7 +4,7 @@
   "description": "Telegram bot - unmotivator",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1", 
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
   "repository": {
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/ukrwebprom/unmotivator_bot#readme",
   "dependencies": {
     "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
     "dotenv": "^16.1.3",
     "express": "^4.18.2",
     "telebot": "^1.4.1"

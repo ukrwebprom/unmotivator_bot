@@ -1,6 +1,7 @@
 /* require('dotenv').config(); */
 const express = require('express');
 const bodyParser = require('body-parser');
+var cors = require('cors');
 const {UNMOTIVATOR_TOKEN, PORT} = process.env;
 const TeleBot = require('telebot');
 const bot = new TeleBot({
@@ -14,6 +15,7 @@ const bot = new TeleBot({
 
   console.log(UNMOTIVATOR_TOKEN);
   const app = express();
+  app.use(cors());
   app.use(bodyParser.json());
 
   app.post('/webhook', (req, res) => {
