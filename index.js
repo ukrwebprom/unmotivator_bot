@@ -30,9 +30,17 @@ const bot = new TeleBot({
   app.listen(PORT, () => {
     console.log(`Webhook server is running on port ${PORT}`);
   });
-
+  const library = {
+    node: ['нода', 'node', 'node js', 'ноду', 'ноде'],
+  }
+  const checker = (case, msg) => {
+      for(const comp in library[case]) {
+        msg.includes(comp) return true;
+      }
+      return false;
+  }
   async function sendResponse(msg, id) {
-    if(msg.includes('нода')) {
+    if(checker('node', msg)) {
         await bot.sendMessage(id, 'Нода?? Ненавижу ноду');
         return;
     }
