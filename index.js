@@ -32,6 +32,7 @@ const bot = new TeleBot({
   });
   const library = {
     node: ['нода', 'node', 'node js', 'ноду', 'ноде'],
+    sobes: ['собес']
   }
   const checker = (topic, msg) => {
       return library[topic].find(e => msg.includes(e));
@@ -40,6 +41,10 @@ const bot = new TeleBot({
     if(checker('node', msg)) {
         await bot.sendMessage(id, 'Нода?? Ненавижу ноду');
         return;
+    }
+    if(checker('sobes', msg)) {
+      await bot.sendMessage(id, 'Собес нам только снится. не ну реально..');
+      return;
     }
   }
 
