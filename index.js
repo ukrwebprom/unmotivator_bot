@@ -34,3 +34,7 @@ const bot = new TeleBot({
         return;
     }
   }
+
+  bot.on('text', async (msg) => {
+    console.log('Got msg:', msg.text);}
+  );
