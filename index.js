@@ -19,7 +19,7 @@ const bot = new TeleBot({
   app.use(bodyParser.json());
 
   app.post('/webhook', (req, res) => {
-    console.log(req);
+    console.log(req.body.message);
     const upd = req.body.message;
     const chat_id = upd.chat.id;
     const message = upd.text;
