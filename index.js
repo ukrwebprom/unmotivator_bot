@@ -13,7 +13,7 @@ const bot = new TeleBot({
     }
   });
 
-  console.log(bot.getWebhookInfo());
+  bot.getWebhookInfo().then(w => console.log(w));
   const app = express();
   app.use(cors());
   app.use(bodyParser.json());
