@@ -32,7 +32,10 @@ const bot = new TeleBot({
   });
   const library = {
     node: ['нода', 'node', 'node js', 'ноду', 'ноде'],
-    sobes: ['собес']
+    sobes: ['собес', 'співбес'],
+    privet: ['привет', 'привіт', 'салют'],
+    native: ['native', 'нейтив', 'нейтів'],
+    skrip: ['скрип']
   }
   const checker = (topic, msg) => {
       return library[topic].find(e => msg.includes(e));
@@ -44,6 +47,18 @@ const bot = new TeleBot({
     }
     if(checker('sobes', msg)) {
       await bot.sendMessage(id, 'Собес нам только снится. не ну реально..');
+      return;
+    }
+    if(checker('privet', msg)) {
+      await bot.sendMessage(id, 'Привіт');
+      return;
+    }
+    if(checker('native', msg)) {
+      await bot.sendMessage(id, 'Взагалі то не розумію навищо нам той нейтів');
+      return;
+    }
+    if(checker('skrip', msg)) {
+      await bot.sendMessage(id, 'скрип реально действует на нервы');
       return;
     }
   }
