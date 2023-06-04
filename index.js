@@ -35,7 +35,7 @@ const bot = new TeleBot({
   }
   const checker = (topic, msg) => {
       for(const comp in library[topic]) {
-        msg.includes(comp) return true;
+        if(msg.includes(comp)) return true;
       }
       return false;
   }
