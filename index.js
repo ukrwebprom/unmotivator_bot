@@ -21,8 +21,8 @@ const bot = new TeleBot({
   app.post('/webhook', (req, res) => {
     console.log(req.body.message);
     const upd = req.body.message;
-    const chat_id = upd.chat.id;
-    const message = upd.text;
+    const chat_id = upd?.chat?.id;
+    const message = upd?.text;
     sendResponse(message.toLowerCase(), chat_id);
     res.status(200).json({ success: true });
   });
