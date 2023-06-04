@@ -34,9 +34,9 @@ const bot = new TeleBot({
     node: ['нода', 'node', 'node js', 'ноду', 'ноде'],
   }
   const checker = (topic, msg) => {
-      for(const comp in library[topic]) {
-        if(msg.includes(comp)) return true;
-      }
+        library[topic].forEach(comp => {
+          if(msg.includes(comp)) return true;
+        })
       return false;
   }
   async function sendResponse(msg, id) {
