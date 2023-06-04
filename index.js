@@ -6,7 +6,7 @@ const TeleBot = require('telebot');
 const bot = new TeleBot({
     token:UNMOTIVATOR_TOKEN,
     webhook: {
-      url:'https://Localhost:3000/webhook',
+      url:'https://unmotivator-bot.onrender.com/webhook',
       host:'0.0.0.0',
       port:PORT
     }
