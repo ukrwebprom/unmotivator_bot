@@ -19,6 +19,7 @@ const bot = new TeleBot({
     const upd = req.body.message;
     const chat_id = upd.chat.id;
     const message = upd.text;
+    console.log(message);
     sendResponse(message.toLowerCase(), chat_id);
     res.status(200).json({ success: true });
   });
