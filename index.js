@@ -13,7 +13,7 @@ const bot = new TeleBot({
     }
   });
 
-  bot.getWebhookInfo().then(w => console.log(w));
+  bot.setWebhook('https://unmotivator-bot.onrender.com/webhook').then(w => console.log(w));
   const app = express();
   app.use(cors());
   app.use(bodyParser.json());
