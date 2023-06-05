@@ -24,8 +24,15 @@ const bot = new TeleBot({
 
 const checkTime = async () => {
   const lastMess = await lastMessage.findOne();
-  console.log(lastMess);
-  lastMess.lastMessage = Date.now(); 
+  const last = lastMess.lastMessage;
+  const n = Date.now();
+  const timeDiff = n.getTime() - last.getTime();
+  const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+
+  console.log('days:', days, 'hours:', hours, 'minutes', minutes);
+  lastMess.lastMessage = n; 
   const ld = await lastMess.save();
   console.log(ld);
 }
