@@ -26,6 +26,8 @@ const bot = new TeleBot({
 /*     if(!lastMessage) lastMessage = Date.now(); */
     doc.lastMessage = Date.now();
     /* const ld = await lastMessage.create({lastMessage: Date.now()}); */
+    const oldLastDate = await lastMessage.findOne();
+    console.log(oldLastDate);
     const ld = await doc.save();
     console.log(ld);
     const upd = req.body.message;
