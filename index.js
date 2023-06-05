@@ -69,7 +69,8 @@ const checkTime = async (id) => {
     sobes: ['собес', 'співбес'],
     privet: ['привет', 'привіт', 'салют'],
     native: ['native', 'нейтив', 'нейтів'],
-    skrip: ['скрип']
+    skrip: ['скрип'],
+    webinar: ['вебинар', 'вебінар']
   }
   const checker = (topic, msg) => {
       return library[topic].find(e => msg.includes(e));
@@ -93,6 +94,10 @@ const checkTime = async (id) => {
     }
     if(checker('skrip', msg)) {
       await bot.sendMessage(id, 'скрип реально действует на нервы');
+      return;
+    }
+    if(checker('webinar', msg)) {
+      await bot.sendMessage(id, 'Я что-то пропустил?');
       return;
     }
   }
