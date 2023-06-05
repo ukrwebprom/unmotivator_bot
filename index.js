@@ -7,6 +7,7 @@ const {UNMOTIVATOR_TOKEN, PORT, DB_UNM} = process.env;
 const TeleBot = require('telebot');
 /* let lastMessage; */
 const lastMessage = mongoose.model('Activity', { lastMessage: Date });
+const doc = new lastMessage();
 const bot = new TeleBot({
     token:UNMOTIVATOR_TOKEN,
     webhook: {
@@ -23,7 +24,9 @@ const bot = new TeleBot({
 
   app.post('/webhook', async (req, res) => {
 /*     if(!lastMessage) lastMessage = Date.now(); */
-    const ld = await lastMessage.create({lastMessage: Date.now()});
+    doc.lastMessage = Date.now();
+    /* const ld = await lastMessage.create({lastMessage: Date.now()}); */
+    const ld = await doc.save();
     console.log(ld);
     const upd = req.body.message;
     const chat_id = upd?.chat?.id;
