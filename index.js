@@ -5,9 +5,9 @@ var cors = require('cors');
 const mongoose = require('mongoose');
 const {UNMOTIVATOR_TOKEN, PORT, DB_UNM} = process.env;
 const TeleBot = require('telebot');
-/* let lastMessage; */
+
 const lastMessage = mongoose.model('Activity', { lastMessage: Date });
-const doc = new lastMessage();
+
 const bot = new TeleBot({
     token:UNMOTIVATOR_TOKEN,
     webhook: {
@@ -22,15 +22,17 @@ const bot = new TeleBot({
   app.use(cors());
   app.use(bodyParser.json());
 
+const checkTime = async () => {
+  const lastMess = await lastMessage.findOne();
+  console.log(lastMess);
+  lastMess.lastMessage = Date.now(); 
+  const ld = await lastMess.save();
+  console.log(ld);
+}
+
+
   app.post('/webhook', async (req, res) => {
-/*     if(!lastMessage) lastMessage = Date.now(); */
-    /* doc.lastMessage = Date.now(); */
-    /* const ld = await lastMessage.create({lastMessage: Date.now()}); */
-    const oldLastDate = await lastMessage.findOne();
-    console.log(oldLastDate);
-    oldLastDate.lastMessage = Date.now(); 
-    const ld = await oldLastDate.save();
-    console.log(ld);
+    checkTime();
     const upd = req.body.message;
     const chat_id = upd?.chat?.id;
     const message = upd?.text;
