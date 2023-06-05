@@ -24,11 +24,11 @@ const bot = new TeleBot({
 
   app.post('/webhook', async (req, res) => {
 /*     if(!lastMessage) lastMessage = Date.now(); */
-    doc.lastMessage = Date.now();
+    /* doc.lastMessage = Date.now(); */
     /* const ld = await lastMessage.create({lastMessage: Date.now()}); */
     const oldLastDate = await lastMessage.findOne();
     console.log(oldLastDate);
-    const ld = await doc.save();
+    const ld = await oldLastDate.updateOne({}, {lastMessage: Date.now()});;
     console.log(ld);
     const upd = req.body.message;
     const chat_id = upd?.chat?.id;
