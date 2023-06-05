@@ -2,7 +2,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 var cors = require('cors');
-const {UNMOTIVATOR_TOKEN, PORT} = process.env;
+const mongoose = require('mongoose');
+const {UNMOTIVATOR_TOKEN, PORT, DB_UNM} = process.env;
 const TeleBot = require('telebot');
 let lastMessage;
 const bot = new TeleBot({
@@ -30,9 +31,18 @@ const bot = new TeleBot({
     res.status(200).json({ success: true });
   });
   
-  app.listen(PORT, () => {
-    console.log(`Webhook server is running on port ${PORT}`);
-  });
+  const start = async () => {
+    try {
+      await mongoose.connect(DB_UNM);
+      console.log("MongoDB connected");
+      app.listen(PORT, () => {
+        console.log(`Webhook server is running on port ${PORT}`);
+      });
+    } catch {
+      console.log("MongoDB connection error");
+    }
+  }
+
   const library = {
     node: ['нода', 'node', 'node js', 'ноду', 'ноде'],
     sobes: ['собес', 'співбес'],
@@ -66,6 +76,4 @@ const bot = new TeleBot({
     }
   }
 
-  bot.on('text', async (msg) => {
-    console.log('Got msg:', msg.text);}
-  );
+  start();
