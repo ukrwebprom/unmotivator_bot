@@ -21,10 +21,12 @@ const bot = new TeleBot({
 
   app.post('/webhook', (req, res) => {
     console.log(lastMessage);
-    lastMessage = Date.now();
+    if(!lastMessage) lastMessage = Date.now();
+
     const upd = req.body.message;
     const chat_id = upd?.chat?.id;
     const message = upd?.text;
+    console.log(bot.getChatHistory(chat_id, 0, 0, 4));
     if(message) sendResponse(message.toLowerCase(), chat_id);
     res.status(200).json({ success: true });
   });
