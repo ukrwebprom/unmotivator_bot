@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 var cors = require('cors');
 const {UNMOTIVATOR_TOKEN, PORT} = process.env;
 const TeleBot = require('telebot');
+let lastMessage;
 const bot = new TeleBot({
     token:UNMOTIVATOR_TOKEN,
     webhook: {
@@ -19,7 +20,8 @@ const bot = new TeleBot({
   app.use(bodyParser.json());
 
   app.post('/webhook', (req, res) => {
-    console.log(req.body.message);
+    console.log(lastMessage);
+    lastMessage = Date.now();
     const upd = req.body.message;
     const chat_id = upd?.chat?.id;
     const message = upd?.text;
