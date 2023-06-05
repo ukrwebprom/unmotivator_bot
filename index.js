@@ -70,7 +70,11 @@ const checkTime = async (id) => {
     privet: ['привет', 'привіт', 'салют'],
     native: ['native', 'нейтив', 'нейтів'],
     skrip: ['скрип'],
-    webinar: ['вебинар', 'вебінар']
+    webinar: ['вебинар', 'вебінар'],
+    hate: ['ненависть', 'ненавижу', 'ненавидеть'],
+    react: ['реакт', 'react'],
+    ai: ['ии', 'нейросеть', 'gpt'],
+    hard: ['тяжело', 'важко']
   }
   const checker = (topic, msg) => {
       return library[topic].find(e => msg.includes(e));
@@ -98,6 +102,22 @@ const checkTime = async (id) => {
     }
     if(checker('webinar', msg)) {
       await bot.sendMessage(id, 'Я что-то пропустил?');
+      return;
+    }
+    if(checker('hate', msg)) {
+      await bot.sendMessage(id, 'да что ты знаешь о ненависти...');
+      return;
+    }
+    if(checker('react', msg)) {
+      await bot.sendMessage(id, 'реакт.. фигакт..');
+      return;
+    }
+    if(checker('ai', msg)) {
+      await bot.sendMessage(id, 'чертов ИИ нас всех оставит без работы. меня точно');
+      return;
+    }
+    if(checker('hard', msg)) {
+      await bot.sendMessage(id, 'а буде ще важче');
       return;
     }
   }
