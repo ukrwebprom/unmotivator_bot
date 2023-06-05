@@ -35,8 +35,10 @@ const checkTime = async (id) => {
   lastMess.lastMessage = n; 
   const ld = await lastMess.save();
   console.log(ld);
-  const d_word = days > 4 ? 'дней' : 'дня';
-  bot.sendMessage(id, `О! это первое сообщение за последние ${days} ${d_word}`);
+  if(days >= 2) {
+    const d_word = days > 4 ? 'дней' : 'дня';
+    bot.sendMessage(id, `О! это первое сообщение за последние ${days} ${d_word}`);
+  }
 }
 
 
