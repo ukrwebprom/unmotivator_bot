@@ -73,7 +73,7 @@ const checkTime = async (id) => {
     webinar: ['вебинар', 'вебінар'],
     hate: ['ненависть', 'ненавижу', 'ненавидеть'],
     react: ['реакт', 'react'],
-    ai: ['ии', 'нейросеть', 'gpt'],
+    ai: [' ии ', 'нейросеть', 'gpt'],
     hard: ['тяжело', 'важко']
   }
   const checker = (topic, msg) => {
