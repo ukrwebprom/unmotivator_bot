@@ -22,7 +22,7 @@ const bot = new TeleBot({
   app.use(cors());
   app.use(bodyParser.json());
 
-const checkTime = async () => {
+const checkTime = async (id) => {
   const lastMess = await lastMessage.findOne();
   const last = lastMess.lastMessage;
   const n = Date.now();
@@ -35,14 +35,17 @@ const checkTime = async () => {
   lastMess.lastMessage = n; 
   const ld = await lastMess.save();
   console.log(ld);
+  const d_word = days > 4 ? 'дней' : 'дня';
+  bot.sendMessage(id, `О! это первое сообщение за последние ${days} ${d_word}`);
 }
 
 
   app.post('/webhook', async (req, res) => {
-    checkTime();
+    
     const upd = req.body.message;
     const chat_id = upd?.chat?.id;
     const message = upd?.text;
+    checkTime(chat_id);
     if(message) sendResponse(message.toLowerCase(), chat_id);
     res.status(200).json({ success: true });
   });
