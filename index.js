@@ -26,7 +26,7 @@ const checkTime = async () => {
   const lastMess = await lastMessage.findOne();
   const last = lastMess.lastMessage;
   const n = Date.now();
-  const timeDiff = n.getTime() - last.getTime();
+  const timeDiff = n - last.getTime();
   const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
   const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
