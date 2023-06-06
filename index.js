@@ -78,7 +78,8 @@ const checkTime = async (id) => {
     ai: [' ии ', 'нейросеть', 'gpt'],
     hard: ['тяжело', 'важко'],
     shut: ['зачини пельку'],
-    youcan: ['можно']
+    youcan: ['можно'],
+    it: [' it ', 'айти']
   }
   const checker = (topic, msg) => {
       return library[topic].find(e => msg.includes(e));
@@ -131,6 +132,10 @@ const checkTime = async (id) => {
     }
     if(checker('youcan', msg)) {
       await bot.sendMessage(id, 'Дякую');
+      return;
+    }
+    if(checker('it', msg)) {
+      await bot.sendMessage(id, 'Ненавижу айти...');
       return;
     }
   }
