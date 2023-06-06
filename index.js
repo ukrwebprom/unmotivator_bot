@@ -5,6 +5,7 @@ var cors = require('cors');
 const mongoose = require('mongoose');
 const {UNMOTIVATOR_TOKEN, PORT, DB_UNM} = process.env;
 const TeleBot = require('telebot');
+let shutup = false;
 
 const lastMessage = mongoose.model('Activity', { lastMessage: Date });
 
@@ -48,7 +49,8 @@ const checkTime = async (id) => {
     const chat_id = upd?.chat?.id;
     const message = upd?.text;
     checkTime(chat_id);
-    if(message) sendResponse(message.toLowerCase(), chat_id);
+    if(message.toLowerCase() == 'можно') shutup = false;
+    if(message && !shutup) sendResponse(message.toLowerCase(), chat_id);
     res.status(200).json({ success: true });
   });
   
@@ -74,14 +76,16 @@ const checkTime = async (id) => {
     hate: ['ненависть', 'ненавижу', 'ненавидеть'],
     react: ['реакт', 'react'],
     ai: [' ии ', 'нейросеть', 'gpt'],
-    hard: ['тяжело', 'важко']
+    hard: ['тяжело', 'важко'],
+    shut: ['зачини пельку'],
+    youcan: ['можно']
   }
   const checker = (topic, msg) => {
       return library[topic].find(e => msg.includes(e));
   }
   async function sendResponse(msg, id) {
     if(checker('node', msg)) {
-        await bot.sendMessage(id, 'Нода?? Ненавижу ноду');
+        await bot.sendMessage(id, 'Нода?? Класс!!');
         return;
     }
     if(checker('sobes', msg)) {
@@ -118,6 +122,15 @@ const checkTime = async (id) => {
     }
     if(checker('hard', msg)) {
       await bot.sendMessage(id, 'а буде ще важче');
+      return;
+    }
+    if(checker('shut', msg)) {
+      shutup = true;
+      await bot.sendMessage(id, 'мовчу.. мовчу.');
+      return;
+    }
+    if(checker('youcan', msg)) {
+      await bot.sendMessage(id, 'Дякую');
       return;
     }
   }
