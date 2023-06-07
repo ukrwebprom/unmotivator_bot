@@ -79,7 +79,8 @@ const checkTime = async (id) => {
     hard: ['тяжело', 'важко'],
     shut: ['зачини пельку'],
     youcan: ['можно'],
-    it: [' it ', 'айти']
+    it: [' it ', 'айти'],
+    docker: ['docker', 'докер']
   }
   const checker = (topic, msg) => {
       return library[topic].find(e => msg.includes(e));
@@ -136,6 +137,10 @@ const checkTime = async (id) => {
     }
     if(checker('it', msg)) {
       await bot.sendMessage(id, 'Ненавижу айти...');
+      return;
+    }
+    if(checker('docker', msg)) {
+      await bot.sendMessage(id, 'на лекции скрипучего про докер я серьезно задумался о карьере садовника');
       return;
     }
   }
